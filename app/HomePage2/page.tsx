@@ -164,7 +164,7 @@ export default function HomePage2() {
                             </Box>
 
                             {/* Botão */}
-                            <ButtonBar onClick={()=>{router.push("/CadastroPage")}}/>
+                            <ButtonBar onClick={() => { router.push("/Page1") }} />
                         </Paper>
 
                         {/* Texto inferior */}

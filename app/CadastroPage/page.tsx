@@ -1,6 +1,7 @@
 "use client";
 
 import { Logo } from "@/componets/Logo";
+import {localhostserver} from "../env"
 import {
   Box,
   Button,
@@ -18,6 +19,24 @@ export default function CadastroPage() {
     const [password, setPassword] = React.useState("");
     const [name, setName] = React.useState("");
     const router = useRouter();
+    async function handleSubmit() {
+        // Aqui você pode adicionar a lógica para enviar os dados de cadastro para o backend
+      const response = await fetch(
+        localhostserver + "/api/users/signup",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ name, email, password }),
+        }
+      );
+      if (response.ok) {
+        router.push("/LoginPage");
+      } else {
+        alert("Erro ao criar conta. Tente novamente.");
+      }
+    }
   return (
     <Box
       sx={{
@@ -101,6 +120,7 @@ export default function CadastroPage() {
               variant="contained"
               fullWidth
               size="large"
+              onClick={handleSubmit}
               sx={{
                 py: 1.5,
                 borderRadius: 3,
